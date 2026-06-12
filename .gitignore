@@ -1,0 +1,37 @@
+# ===== ととのうWeb リポジトリ =====
+# 方針：GitHubにはサイトのコードだけを入れる。
+# 業務文書はGoogleドライブで管理し、顧客の個人情報・社内メモは含めない。
+
+# --- 依存・ビルド生成物（自動再生成されるため不要・巨大） ---
+node_modules/
+.next/
+out/
+dist/
+build/
+.cache/
+
+# --- OS・エディタの一時ファイル ---
+.DS_Store
+Thumbs.db
+*.log
+
+# --- デプロイ用の複製（NetlifyはGitから直接公開するため不要） ---
+公開用/
+
+# --- 業務文書（Googleドライブで管理） ---
+*.docx
+*.xlsx
+*.pptx
+
+# --- 顧客の個人情報・社内メモ（第三者に渡さない） ---
+*.csv
+セキュリティ課題・工程漏れメモ.md
+Web制作・更新運用サービス.txt
+
+# --- 元画像・一時アセット（最適化済みは images/ に同梱済み） ---
+サイト用画像/
+flow_generator_template.py
+業務フロー_ツール対応表.png
+F2SH_McagAAU_dn.png
+/ChatGPT Image*.png
+新しいフォルダー/

@@ -1,0 +1,196 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 580px;
+  overflow: hidden;
+  background: #0a1f37;
+}
+
+/* 背景スライド（フェード + Ken Burns） */
+.bgSlide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 2.2s ease-in-out;
+  will-change: opacity, transform;
+}
+
+.bgSlide.active {
+  opacity: 1;
+  animation: kenburns 8s ease-out forwards;
+}
+
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.12); }
+}
+
+/* 暗いオーバーレイ */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(10, 20, 40, 0.35) 0%, rgba(10, 20, 40, 0.60) 100%);
+  pointer-events: none;
+}
+
+/* 中央コンテンツ */
+.center {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 1.2s 0.4s ease-out forwards;
+}
+
+/* 切り替わるコピー */
+.copyWrap {
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  min-height: 3em;
+  margin-bottom: 36px;
+}
+
+.copyItem {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.75rem, 4.6vw, 3.2rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  margin: 0;
+}
+
+.copyItem.copyActive {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.em {
+  color: #9fd0ff;
+}
+
+/* CTAボタン */
+.btns {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeUp 1.2s 1s ease-out forwards;
+}
+
+.btnPrimary {
+  background: var(--navy);
+  color: #fff;
+  padding: 17px 34px;
+  border-radius: 9px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  display: inline-block;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.btnPrimary:hover {
+  background: var(--navy-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 42, 74, 0.22);
+}
+
+.btnGhost {
+  padding: 17px 30px;
+  border-radius: 9px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
+  display: inline-block;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btnGhost:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* スクロール誘導 */
+.scrollCue {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-align: center;
+  opacity: 0.85;
+  animation: fadeUp 1.4s 1.4s ease-out both;
+}
+
+.line {
+  width: 1px;
+  height: 46px;
+  background: #fff;
+  margin: 8px auto 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.line::after {
+  content: '';
+  position: absolute;
+  top: -46px;
+  left: 0;
+  width: 1px;
+  height: 46px;
+  background: rgba(255, 255, 255, 0.4);
+  animation: drop 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drop {
+  0%       { top: -46px; }
+  60%, 100% { top: 46px; }
+}
+
+@media (max-width: 820px) {
+  .copyWrap {
+    min-height: 4em;
+  }
+  .copyItem {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+  }
+}

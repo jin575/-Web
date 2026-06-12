@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# 公開ドメイン確定後、下記URLを実URLに差し替えてください
+Sitemap: https://example.com/sitemap.xml
