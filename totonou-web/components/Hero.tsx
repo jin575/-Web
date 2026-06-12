@@ -10,11 +10,22 @@ const BG_IMAGES = [
 ];
 
 const COPIES = [
-  <>いい先生なのに、<br />Webで<span className={styles.em}>損</span>してませんか。</>,
-  <>口コミは満点。<br />なのに、予約は<span className={styles.em}>Webで止まっている</span>。</>,
-  <>あなたの良さが、<br />ちゃんと<span className={styles.em}>伝わるWeb</span>へ。</>,
-  <><span className={styles.em}>選ばれる理由</span>を、<br />ちゃんと見せる。</>,
-];
+  {
+    en: 'FIRST, TRUST.',
+    ja: ['信頼が先にある。', '予約は、そのあとについてくる。'],
+  },
+  {
+    en: 'DESIGNED FOR TRUST.',
+    ja: ['安心して予約されるためのホームページを。'],
+    long: true,
+  },
+  {
+    en: 'YOUR WEB, OUR SUPPORT.',
+    ja: ['先生が施術に集中できるよう、', 'ホームページ制作から更新まで支えます'],
+    long: true,
+    stacked: true,
+  },
+] as const;
 
 export default function Hero() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -49,28 +60,22 @@ export default function Hero() {
 
       {/* 中央コンテンツ */}
       <div className={styles.center}>
-        <span className={styles.eyebrow}>
-          WEB集客導線改善 &nbsp;—&nbsp; 地域の整体院・整骨院・医院へ
-        </span>
-
         <div className={styles.copyWrap}>
           {COPIES.map((copy, i) => (
             <p
-              key={i}
+              key={copy.en}
               className={`${styles.copyItem} ${i === activeIdx ? styles.copyActive : ''}`}
             >
-              {copy}
+              <span className={`${styles.mainEn} ${copy.long ? styles.mainEnLong : ''}`}>
+                {copy.en}
+              </span>
+              <span className={`${styles.mainJa} ${copy.stacked ? styles.mainJaStacked : ''}`}>
+                {copy.ja.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </span>
             </p>
           ))}
-        </div>
-
-        <div className={styles.btns}>
-          <a href="#contact" className={styles.btnPrimary}>
-            無料でWeb集客の診断を受ける
-          </a>
-          <a href="#price" className={styles.btnGhost}>
-            料金を見る
-          </a>
         </div>
       </div>
 

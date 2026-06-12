@@ -97,7 +97,7 @@
   .hero-center{
     position:absolute;inset:0;z-index:3;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:0 24px;
+    text-align:center;padding:0 28px;transform:translateY(4vh);
   }
   .hero-eyebrow{
     font-size:.8rem;letter-spacing:.22em;font-weight:700;color:rgba(255,255,255,.85);
@@ -105,17 +105,37 @@
     opacity:0;animation:fadeUp 1.2s .4s ease-out forwards;
   }
   /* 切り替わるキャッチコピー */
-  .hero-copy-wrap{position:relative;width:100%;max-width:820px;min-height:11rem;margin-bottom:36px}
+  .hero-copy-wrap{position:relative;width:100%;max-width:min(92vw,1280px);min-height:clamp(9rem,18vw,14rem);margin-bottom:0}
   .copy-item{
-    position:absolute;left:0;right:0;top:50%;text-align:center;
-    font-size:clamp(1.75rem,4.6vw,3.2rem);font-weight:800;color:#fff;
-    line-height:1.5;letter-spacing:.01em;
-    text-shadow:0 4px 24px rgba(0,0,0,.45);
-    opacity:0;transform:translateY(-50%) translateY(14px);
+    position:absolute;inset:0;text-align:center;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:#fff;text-shadow:0 5px 24px rgba(0,0,0,.46);
+    opacity:0;transform:translateY(18px);
     transition:opacity 1.2s ease,transform 1.2s ease;
   }
   .copy-item .em{color:#9fd0ff}
-  .copy-item.active{opacity:1;transform:translateY(-50%) translateY(0)}
+  .copy-item.active{opacity:1;transform:translateY(0)}
+  .hero-main-en{
+    display:block;
+    font-family:"Arial Narrow","Helvetica Neue",Arial,sans-serif;
+    font-size:clamp(4.6rem,11vw,9.4rem);
+    font-weight:900;
+    line-height:.86;
+    letter-spacing:.015em;
+  }
+  .hero-main-ja{
+    display:flex;
+    justify-content:center;
+    gap:.55em;
+    flex-wrap:wrap;
+    margin-top:22px;
+    font-size:clamp(1.08rem,2.1vw,2rem);
+    font-weight:800;
+    line-height:1.45;
+    letter-spacing:.02em;
+  }
+  .hero-main-en.is-long{font-size:clamp(3.6rem,8vw,7rem);letter-spacing:.01em}
+  .hero-main-ja.is-stacked{flex-direction:column;gap:.08em}
   /* CTAボタン */
   .hero-btns{
     display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;
@@ -136,8 +156,11 @@
   @keyframes drop{0%{top:-46px}60%,100%{top:46px}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
   @media(max-width:820px){
-    .copy-item{font-size:clamp(1.5rem,6vw,2.2rem);min-height:0}
-    .hero-copy-wrap{min-height:8rem}
+    .hero-center{transform:translateY(2vh);padding:0 20px}
+    .hero-copy-wrap{min-height:11rem}
+    .hero-main-en{font-size:clamp(3.1rem,14vw,5.6rem)}
+    .hero-main-en.is-long{font-size:clamp(2.35rem,9vw,3.3rem)}
+    .hero-main-ja{flex-direction:column;gap:.08em;margin-top:18px;font-size:clamp(1rem,4.3vw,1.35rem)}
   }
 
   /* mission */
@@ -314,16 +337,19 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-center">
-    <span class="hero-eyebrow">WEB集客導線改善 &nbsp;—&nbsp; 地域の整体院・整骨院・医院へ</span>
     <div class="hero-copy-wrap">
-      <div class="copy-item">いい先生なのに、<br><span class="em">Webで損</span>してませんか。</div>
-      <div class="copy-item">口コミは満点。<br>なのに、予約は<span class="em">Webで止まっている</span>。</div>
-      <div class="copy-item">あなたの良さが、<br>ちゃんと<span class="em">伝わるWeb</span>へ。</div>
-      <div class="copy-item"><span class="em">選ばれる理由</span>を、<br>ちゃんと見せる。</div>
-    </div>
-    <div class="hero-btns">
-      <a href="#contact" class="btn-primary">無料でWeb集客の診断を受ける</a>
-      <a href="#price" class="btn-ghost-white">料金を見る</a>
+      <div class="copy-item active">
+        <span class="hero-main-en">FIRST, TRUST.</span>
+        <span class="hero-main-ja"><span>信頼が先にある。</span><span>予約は、そのあとについてくる。</span></span>
+      </div>
+      <div class="copy-item">
+        <span class="hero-main-en is-long">DESIGNED FOR TRUST.</span>
+        <span class="hero-main-ja"><span>安心して予約されるためのホームページを。</span></span>
+      </div>
+      <div class="copy-item">
+        <span class="hero-main-en is-long">YOUR WEB, OUR SUPPORT.</span>
+        <span class="hero-main-ja is-stacked"><span>先生が施術に集中できるよう、</span><span>ホームページ制作から更新まで支えます</span></span>
+      </div>
     </div>
   </div>
 
