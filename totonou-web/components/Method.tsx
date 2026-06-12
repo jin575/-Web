@@ -13,10 +13,7 @@ export default function Method() {
         <span className={styles.eyebrow}>
           METHOD<span className={styles.jp}>集客導線ラボの特長</span>
         </span>
-        <h2 className={styles.title}>
-          大げさなことはしません。<br />
-          「伝わる導線」を地道に整えます。
-        </h2>
+        <h2 className={styles.title}>「伝わる導線」を地道に整えます。</h2>
         <p className={styles.lead}>
           立ち上げ段階だからこそ、1件ずつ丁寧に。背伸びした成果保証ではなく、確実に改善できるところを整えます。
         </p>

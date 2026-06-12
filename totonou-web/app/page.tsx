@@ -1,8 +1,6 @@
 import Header   from '@/components/Header';
 import Hero     from '@/components/Hero';
 import Mission  from '@/components/Mission';
-import Problem  from '@/components/Problem';
-import Method   from '@/components/Method';
 import Carousel from '@/components/Carousel';
 import Service  from '@/components/Service';
 import Pricing  from '@/components/Pricing';
@@ -30,8 +28,6 @@ export default function Home() {
       <main>
         <Hero />
         <Mission />
-        <Problem />
-        <Method />
         <Carousel />
         <Service />
         <Pricing />

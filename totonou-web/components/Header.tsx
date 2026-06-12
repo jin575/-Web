@@ -42,8 +42,6 @@ export default function Header() {
 
         <nav className={`${styles.navLinks} ${open ? styles.open : ''}`}>
           <a href="#mission" onClick={() => setOpen(false)}>理念</a>
-          <a href="#problem" onClick={() => setOpen(false)}>こんな方へ</a>
-          <a href="#method" onClick={() => setOpen(false)}>特長</a>
           <a href="#service" onClick={() => setOpen(false)}>サービス</a>
           <a href="#price" onClick={() => setOpen(false)}>料金</a>
           <a href="#contact" className={styles.navCta} onClick={() => setOpen(false)}>

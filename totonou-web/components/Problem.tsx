@@ -22,7 +22,6 @@ export default function Problem() {
         <span className={styles.eyebrow}>
           CHECK<span className={styles.jp}>こんな方へ</span>
         </span>
-        <h2 className={styles.title}>心当たりはありませんか</h2>
         <p className={styles.lead}>
           どれか一つでも当てはまるなら、Web上の見せ方を整えるだけで、問い合わせが取りやすくなる余地があります。
         </p>

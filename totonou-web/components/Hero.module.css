@@ -98,10 +98,11 @@
 .mainEn {
   display: block;
   font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-  font-size: clamp(4.6rem, 11vw, 9.4rem);
+  font-size: clamp(5rem, 12vw, 10.4rem);
   font-weight: 900;
   line-height: 0.86;
   letter-spacing: 0.015em;
+  white-space: nowrap;
 }
 
 .mainJa {
@@ -114,6 +115,21 @@
   font-weight: 800;
   line-height: 1.45;
   letter-spacing: 0.02em;
+}
+
+.mainEnLong {
+  font-size: clamp(3.4rem, 7.2vw, 7.2rem);
+  letter-spacing: 0.01em;
+}
+
+.mainJaStacked {
+  flex-direction: column;
+  gap: 0.08em;
+}
+
+.mainJaSingleLine {
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 /* CTAボタン */
@@ -214,12 +230,19 @@
     min-height: 11rem;
   }
   .mainEn {
-    font-size: clamp(3.1rem, 14vw, 5.6rem);
+    font-size: clamp(2.7rem, 12.4vw, 5rem);
+  }
+  .mainEnLong {
+    font-size: clamp(1.6rem, 6.25vw, 2.45rem);
   }
   .mainJa {
     flex-direction: column;
     gap: 0.08em;
     margin-top: 18px;
     font-size: clamp(1rem, 4.3vw, 1.35rem);
+  }
+  .mainJaSingleLine {
+    flex-direction: row;
+    font-size: clamp(0.78rem, 3vw, 0.94rem);
   }
 }
