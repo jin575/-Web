@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>料金プランの詳細｜医療のみちしるべ</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --navy:#0f2a4a; --navy-deep:#0a1f37; --blue:#2f6fb3; --blue-soft:#e8f0f8;
+    --ink:#1d2733; --sub:#5d6b7a; --line:#dbe4ee; --bg:#fff; --bg-soft:#f4f8fc;
+    --accent:#1aa6a0; --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;color:var(--navy);font-size:1.12rem}
+  .brand .mark{width:38px;height:38px;border-radius:7px;flex:0 0 auto}
+  .back{font-size:.9rem;color:var(--navy);font-weight:700}
+  .back:hover{color:var(--blue)}
+
+  .subhero{background:var(--bg-soft);border-bottom:1px solid var(--line);padding:54px 0 46px}
+  .crumb{font-size:.82rem;color:var(--sub);margin-bottom:14px}
+  .crumb a{color:var(--blue)}
+  .eyebrow{display:block;font-size:.8rem;letter-spacing:.22em;font-weight:700;color:var(--blue);margin-bottom:12px}
+  .eyebrow .jp{color:var(--sub);letter-spacing:.06em;margin-left:10px;font-size:.82rem;font-weight:600}
+  h1.page-title{font-size:2rem;color:var(--navy);font-weight:800;letter-spacing:.02em}
+  .page-lead{color:var(--sub);margin-top:14px;max-width:700px}
+
+  main{padding:60px 0 0}
+  .cards{display:flex;gap:22px;flex-wrap:wrap;align-items:stretch}
+  .card{flex:1 1 280px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 26px;display:flex;flex-direction:column;box-shadow:0 14px 36px rgba(15,42,74,.07)}
+  .card.primary{border-top:5px solid var(--blue)}
+  .card.sub{border-top:5px solid var(--blue-soft)}
+  .plan-name{font-size:1.18rem;font-weight:800;color:var(--navy)}
+  .badge{display:inline-block;font-size:.66rem;font-weight:700;color:#fff;background:var(--blue);border-radius:999px;padding:3px 10px;margin-left:8px;letter-spacing:.06em;vertical-align:middle}
+  .price{margin:12px 0 4px;color:var(--navy)}
+  .price .num{font-size:1.95rem;font-weight:800}
+  .price .unit{font-size:.95rem;font-weight:700;margin-left:2px}
+  .price .sub{font-size:.85rem;color:var(--sub);font-weight:600}
+  .fit{background:var(--bg-soft);border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px;margin:16px 0 18px;font-size:.9rem;color:var(--navy)}
+  .fit b{display:block;font-size:.72rem;letter-spacing:.1em;color:var(--blue);margin-bottom:3px}
+  .features{list-style:none;margin:auto 0 0}
+  .features li{position:relative;padding:8px 0 8px 26px;border-bottom:1px dashed var(--line);font-size:.93rem}
+  .features li:last-child{border-bottom:none}
+  .features li::before{content:"\2713";position:absolute;left:2px;top:8px;color:var(--blue);font-weight:800}
+  .note{font-size:.85rem;color:var(--sub);margin-top:16px}
+
+  h2{font-size:1.4rem;color:var(--navy);margin:56px 0 18px;padding-bottom:10px;border-bottom:2px solid var(--blue-soft)}
+  table.opt{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 10px 28px rgba(15,42,74,.06)}
+  table.opt th,table.opt td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);font-size:.93rem}
+  table.opt th{background:var(--navy);color:#fff;font-weight:700;letter-spacing:.04em}
+  table.opt td.amt{font-weight:800;color:var(--navy);white-space:nowrap}
+  table.opt tr:last-child td{border-bottom:none}
+  table.opt tbody tr:nth-child(even){background:var(--bg-soft)}
+  .fine{font-size:.85rem;color:var(--sub);margin-top:16px;line-height:1.8}
+
+  footer{background:var(--navy-deep);color:rgba(255,255,255,.72);padding:40px 0;font-size:.9rem;margin-top:80px}
+  .foot-brand{color:#fff;font-weight:800;font-size:1.05rem;margin-bottom:6px}
+
+  @media(max-width:760px){
+    h1.page-title{font-size:1.6rem}
+    table.opt thead{display:none}
+    table.opt,table.opt tbody,table.opt tr,table.opt td{display:block;width:100%}
+    table.opt tr{border-bottom:1px solid var(--line)}
+    table.opt tr:last-child{border-bottom:none}
+    table.opt td{border-bottom:none;padding:2px 16px}
+    table.opt td:first-child{font-weight:800;color:var(--navy);padding-top:14px}
+    table.opt td.amt{padding-bottom:14px}
+    table.opt tbody tr:nth-child(even){background:var(--bg-soft)}
+  }
+  :focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="index.html#top" class="brand"><img class="mark" src="logo.png" alt="医療のみちしるべ">医療のみちしるべ</a>
+      <a class="back" href="index.html">← トップへ戻る</a>
+    </div>
+  </header>
+
+  <section class="subhero">
+    <div class="wrap">
+      <div class="crumb"><a href="index.html">HOME</a> / 料金プランの詳細</div>
+      <span class="eyebrow">PRICE<span class="jp">料金プランの詳細</span></span>
+      <h1 class="page-title">3つのプランから選べます</h1>
+      <p class="page-lead">まずは「買い切りプラン」でサイトを制作。公開後の運用は、必要に応じて任意の月額プランをお選びいただけます。</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+      <div class="cards">
+        <!-- 買い切り -->
+        <div class="card primary">
+          <div class="plan-name">買い切りプラン<span class="badge">まずはここから</span></div>
+          <div class="price"><span class="num">200,000</span><span class="unit">円</span> <span class="sub">／ 初回（税込）</span></div>
+          <div class="fit"><b>こんな医院様に</b>月額に縛られず、まずは自院の資産になるサイトを持ちたい医院様</div>
+          <ul class="features">
+            <li>サイト一式の制作（デザイン・コーディング）</li>
+            <li>ドメインの取得代行・SSL・公開設定</li>
+            <li>既存メールを止めないDNS調整</li>
+            <li>ソースコードを納品（医院様の資産として）</li>
+          </ul>
+        </div>
+        <!-- 見守り -->
+        <div class="card sub">
+          <div class="plan-name">見守りプラン</div>
+          <div class="price"><span class="num">2,000</span><span class="unit">円</span> <span class="sub">／ 月（税込）</span></div>
+          <div class="fit"><b>こんな医院様に</b>公開後も「落ちない安心」がほしい医院様</div>
+          <ul class="features">
+            <li>稼働監視・表示チェック</li>
+            <li>サーバー障害・移設への対応</li>
+            <li>トラブル相談の窓口</li>
+            <li>軽微な修正 月1回</li>
+          </ul>
+        </div>
+        <!-- 運用 -->
+        <div class="card sub">
+          <div class="plan-name">運用プラン</div>
+          <div class="price"><span class="num">6,000</span><span class="unit">円</span> <span class="sub">／ 月（税込）</span></div>
+          <div class="fit"><b>こんな医院様に</b>更新も予約設定も、丸ごとお任せしたい医院様</div>
+          <ul class="features">
+            <li>見守りプランの内容すべて</li>
+            <li>コンテンツ更新の代行 月3回まで</li>
+            <li>予約システムの設定変更サポート</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">※ 見守り・運用プランは、買い切りプランで制作後の任意の月額プランです。</p>
+
+      <h2>オプション</h2>
+      <table class="opt">
+        <thead><tr><th>内容</th><th>料金</th></tr></thead>
+        <tbody>
+          <tr><td>追加ページ（事例・スタッフ・料金詳細 等）</td><td class="amt">10,000円〜／ページ</td></tr>
+          <tr><td>予約システム／外部ツール連携（埋め込み・初期設置）</td><td class="amt">10,000円〜</td></tr>
+          <tr><td>写真撮影の手配・ディレクション</td><td class="amt">5,000〜10,000円＋カメラマン実費</td></tr>
+          <tr><td>ロゴ簡易作成</td><td class="amt">5,000円〜</td></tr>
+          <tr><td>2回目以降の修正（スポット）</td><td class="amt">3,000円〜／回</td></tr>
+        </tbody>
+      </table>
+      <p class="fine">※ 表示価格はすべて税込です。ドメイン更新費（約2,700円／年）など外部サービスの実費は、医院様の直接ご負担となります。</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-brand">医療のみちしるべ</div>
+      地域事業者のWeb集客導線改善<br>
+      お問い合わせ：shukyakudosenlab@gmail.com
+    </div>
+  </footer>
+</body>
+</html>
