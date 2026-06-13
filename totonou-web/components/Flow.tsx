@@ -105,18 +105,13 @@ export default function Flow() {
               FLOW<span className={styles.jp}>ご相談からサイト公開までの流れ</span>
             </span>
             <div className={styles.display}>
-              <strong>8</strong>FLOW
+              FLOW
             </div>
           </div>
           <div className={styles.summary}>
             <h2>ご相談からサイト公開までの流れ</h2>
             <p>ととのうWEBでは、サイトを作って終わりでなく、サイトが公開されてからのサポートを大切にしています。</p>
             <p>またご依頼前に、料金体系・作業範囲・追加費用の有無を明確にし、安心して進めていただける形でご案内いたします。</p>
-            <ul className={styles.checklist}>
-              <li>初めて見る患者さんに伝わる順番になっているか。</li>
-              <li>患者さんが問い合わせ前に迷う場所が残っていないか。</li>
-              <li>サイトを見ながら一つずつ整理し、無理なく進めていきましょう。</li>
-            </ul>
           </div>
         </div>
         <div className={styles.slider}>

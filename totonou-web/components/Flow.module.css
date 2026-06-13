@@ -39,8 +39,7 @@
 }
 
 .display strong {
-  display: block;
-  color: var(--navy);
+  display: none;
 }
 
 .summary h2 {
@@ -61,7 +60,7 @@
 }
 
 .checklist {
-  display: grid;
+  display: none;
   gap: 8px;
   list-style: none;
   margin-top: 22px;

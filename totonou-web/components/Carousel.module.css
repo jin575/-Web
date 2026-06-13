@@ -1,19 +1,40 @@
 .section {
   position: relative;
-  padding: 108px 0;
+  padding: 118px 0 132px;
   overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(244, 249, 253, 0.97), rgba(244, 249, 253, 0.86)),
-    url("/images/mission-consultation.png") center / cover no-repeat;
+  background: #fff;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/images/mission-consultation.png") right 8% top 8% / 42% auto no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  left: -170px;
+  top: 0;
+  width: 520px;
+  height: 760px;
+  background: linear-gradient(135deg, rgba(15, 42, 74, 0.08), rgba(63, 143, 193, 0.05));
+  clip-path: polygon(0 0, 100% 0, 42% 100%, 0 100%);
+  pointer-events: none;
 }
 
 .section :global(.wrap) {
   position: relative;
   z-index: 1;
+  max-width: 1500px;
 }
 
 .head {
-  margin-bottom: 42px;
+  text-align: center;
+  margin-bottom: 58px;
 }
 
 .eyebrow {
@@ -35,112 +56,171 @@
 }
 
 .title {
-  font-size: clamp(3rem, 7vw, 6.8rem);
-  line-height: 0.86;
+  font-size: clamp(4rem, 7.2vw, 6.9rem);
+  line-height: 0.9;
   font-weight: 900;
   letter-spacing: -0.02em;
-  color: rgba(63, 143, 193, 0.18);
+  color: #1f2328;
 }
 
 .title strong {
-  display: block;
-  color: var(--navy);
+  display: none;
+}
+
+.copy {
+  max-width: 760px;
+  margin: 24px auto 0;
+  font-size: 1.05rem;
+  line-height: 2.05;
+  color: #27384c;
+  font-weight: 650;
+  letter-spacing: 0.05em;
 }
 
 .slider {
   position: relative;
-  margin-top: 34px;
+  margin-top: 52px;
 }
 
 .viewport {
   overflow: hidden;
-  margin: 0 72px;
+  margin: 0 92px;
 }
 
 .track {
   display: flex;
-  gap: 22px;
-  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+  flex-wrap: nowrap;
+  gap: 72px;
+  transition: transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);
   will-change: transform;
 }
 
 .card {
   position: relative;
-  flex: 0 0 calc((100% - 44px) / 3);
-  min-height: 360px;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(209, 224, 235, 0.86);
-  padding: 34px 30px 38px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 18px 50px rgba(15, 42, 74, 0.08);
+  flex: 0 0 min(1180px, calc(100vw - 250px));
+  min-height: 730px;
+  background: transparent;
+  border: 0;
+  padding: 0 0 92px;
+  display: block;
+  overflow: visible;
+  box-shadow: none;
 }
 
 .card::after {
-  content: "";
-  position: absolute;
-  right: -38px;
-  bottom: -44px;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background: rgba(63, 143, 193, 0.08);
+  display: none;
 }
 
 .num {
-  font-size: 3.15rem;
-  line-height: 1;
+  position: absolute;
+  right: 92px;
+  bottom: -8px;
+  font-size: clamp(7rem, 15vw, 13rem);
+  line-height: 0.8;
   font-weight: 900;
-  color: rgba(63, 143, 193, 0.18);
-  margin-bottom: 18px;
+  color: #1f2328;
+  letter-spacing: -0.08em;
+  margin: 0;
+}
+
+.num::after {
+  content: "/";
+  display: inline-block;
+  font-size: 0.34em;
+  font-weight: 300;
+  margin-left: 18px;
+  transform: translateY(0.12em);
+  color: #1f2328;
 }
 
 .en {
-  font-size: 0.76rem;
-  letter-spacing: 0.18em;
+  height: 430px;
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: clamp(3.6rem, 7.2vw, 6.5rem);
+  line-height: 1;
   font-weight: 900;
-  color: var(--blue);
-  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+}
+
+.card:nth-child(1) .en {
+  background-image: linear-gradient(rgba(15, 42, 74, 0.12), rgba(15, 42, 74, 0.12)), url("/images/mission-consultation.png");
+}
+
+.card:nth-child(2) .en {
+  background-image: linear-gradient(rgba(15, 42, 74, 0.1), rgba(15, 42, 74, 0.1)), url("/images/hero-1-consultation.png");
+}
+
+.card:nth-child(3) .en {
+  background-image: linear-gradient(rgba(15, 42, 74, 0.18), rgba(15, 42, 74, 0.18)), url("/images/hero-2.jpg");
+}
+
+.card:nth-child(4) .en {
+  background-image: linear-gradient(rgba(15, 42, 74, 0.18), rgba(15, 42, 74, 0.18)), url("/images/hero-3.jpg");
 }
 
 .card h3 {
-  font-size: 1.42rem;
+  max-width: 660px;
+  font-size: clamp(1.7rem, 2.3vw, 2.55rem);
   line-height: 1.55;
   font-weight: 900;
-  color: var(--navy);
-  letter-spacing: 0.02em;
-  margin-bottom: 18px;
+  color: #1f2328;
+  letter-spacing: 0.03em;
+  margin: 58px 390px 0 34px;
+  white-space: pre-line;
 }
 
 .card p {
-  font-size: 1rem;
-  line-height: 1.95;
-  color: var(--sub);
-  font-weight: 650;
+  max-width: 640px;
+  font-size: 1.08rem;
+  line-height: 2.1;
+  color: #1d2733;
+  font-weight: 700;
   position: relative;
   z-index: 1;
+  margin: 22px 390px 0 34px;
 }
 
 .arrow {
   position: absolute;
-  top: 50%;
+  top: 310px;
   transform: translateY(-50%);
   z-index: 3;
-  width: 54px;
-  height: 76px;
+  width: 74px;
+  height: 108px;
   border: 0;
-  background: #1f2328;
-  color: #fff;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  font-weight: 900;
+  background: transparent;
+  color: transparent;
+  font-size: 0;
   cursor: pointer;
   transition: 0.25s;
 }
 
+.arrow::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 35px;
+  width: 40px;
+  height: 40px;
+  border-top: 5px solid #1f2328;
+  border-left: 5px solid #1f2328;
+  transform: rotate(-45deg);
+}
+
+.next::before {
+  left: 10px;
+  transform: rotate(135deg);
+}
+
 .arrow:hover {
-  background: var(--blue);
+  opacity: 0.6;
 }
 
 .arrow:disabled {
@@ -192,6 +272,11 @@
     font-size: 4.2rem;
   }
 
+  .copy {
+    font-size: 0.96rem;
+    text-align: left;
+  }
+
   .viewport {
     margin: 0 0 72px;
   }
@@ -203,7 +288,29 @@
   .card {
     flex: 0 0 100%;
     min-height: auto;
-    padding: 28px 24px 34px;
+    padding: 0 0 96px;
+  }
+
+  .en {
+    height: 260px;
+    font-size: clamp(2.45rem, 12vw, 4.1rem);
+  }
+
+  .card h3 {
+    font-size: 1.45rem;
+    margin: 34px 0 0;
+  }
+
+  .card p {
+    font-size: 1rem;
+    line-height: 1.9;
+    margin: 18px 0 0;
+  }
+
+  .num {
+    right: 10px;
+    bottom: 18px;
+    font-size: 5rem;
   }
 
   .arrow {
@@ -212,6 +319,13 @@
     transform: none;
     width: calc(50% - 6px);
     height: 54px;
+    background: #1f2328;
+    color: #fff;
+    font-size: 0.72rem;
+  }
+
+  .arrow::before {
+    display: none;
   }
 
   .prev {
