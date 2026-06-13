@@ -1,172 +1,121 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Carousel.module.css';
 
-const POINTS = [
-  { en: 'POINT 01', title: 'スマホで迷わず見られるか',      desc: '今や問い合わせの7割以上はスマホから。文字サイズ・ボタンの大きさ・読み込み速度を最初に確認します。' },
-  { en: 'POINT 02', title: '問い合わせ方法が一目で分かるか', desc: '電話番号・フォームがすぐ見つかるか。「どうすれば連絡できるのか」で離脱しているケースが最も多いです。' },
-  { en: 'POINT 03', title: '強みが言葉になっているか',       desc: '「丁寧な施術」では差別化になりません。誰に・何を・どう解決するかが具体的に書かれているかを整理します。' },
-  { en: 'POINT 04', title: 'ファーストビューで離脱しないか', desc: '最初の3秒で伝わらないと読まれません。「何屋か・誰のためか・次にすべきこと」が一目で分かる構成にします。' },
-  { en: 'POINT 05', title: 'Googleマップと連携しているか',   desc: 'マップの評価は高いのにサイトに誘導できていないのは機会損失。マップ埋め込みと口コミ活用を整えます。' },
-  { en: 'POINT 06', title: '信頼感が演出されているか',       desc: '顔写真・実績・受賞歴・口コミ抜粋など「この人に頼んでいいか」を後押しする要素が揃っているか確認します。' },
-  { en: 'POINT 07', title: '次の行動を促しているか',         desc: '読み終えた人が「次に何をすればいいか」分かる導線が必要です。CTAボタンや電話リンクの配置を最適化します。' },
-];
+const METHODS = [
+  {
+    number: '01',
+    label: 'LOCAL TRUST',
+    title: '地域で選ばれてきた理由を、Webでも伝わる形へ',
+    body: '口コミや紹介で信頼されている院ほど、その良さがWeb上で伝わりきっていないことがあります。大きく見せるのではなく、初めての患者さんが不安なく問い合わせできる見せ方とその導線を整えます。',
+  },
+  {
+    number: '02',
+    label: 'RIGHT ORDER',
+    title: '大げさなことはしません。伝えたいことを、伝わる順番に',
+    body: '先生が伝えたいことを、そのまま並べるだけでは、初めての患者さんには届きにくいことがあります。症状、費用感、初診の流れ、予約方法など、不安がひとつずつ解けていく順番に整理し整えます。',
+  },
+  {
+    number: '03',
+    label: 'BEFORE VISIT',
+    title: '来院前の不安を、言葉でほどく',
+    body: '患者さんは、予約ボタンが見つからない、診療時間が分かりにくい、問い合わせの前で止まってしまうことがあります。スマホで見たときの予約のしやすさを非常に重視しています。',
+  },
+  {
+    number: '04',
+    label: 'UPDATE SUPPORT',
+    title: '丸投げしてください、徹底的な更新サポート',
+    body: '休診日、診療時間、料金、メニュー、お知らせなど細かな修正に時間を取られたりしないよう、必要な確認だけを行いながら、変更を丸投げできます。作って終わりではなく、無理なく続く形を整えます。',
+  },
+] as const;
 
 export default function Carousel() {
   const [index, setIndex] = useState(0);
-  const trackRef  = useRef<HTMLDivElement>(null);
-  const maskRef   = useRef<HTMLDivElement>(null);
-  const timerRef  = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  // カード幅 + gap を計算
-  const getMetrics = useCallback(() => {
-    const track = trackRef.current;
-    const mask  = maskRef.current;
-    if (!track || !mask) return { cardW: 324, maxIndex: 0 };
-    const card = track.querySelector<HTMLElement>(`.${styles.card}`);
-    const gap  = parseFloat(getComputedStyle(track).gap) || 24;
-    const cardW = card ? card.getBoundingClientRect().width + gap : 324;
-    const maskW = mask.getBoundingClientRect().width;
-    const perView  = Math.max(1, Math.round((maskW + gap) / cardW));
-    const maxIndex = Math.max(0, POINTS.length - perView);
-    return { cardW, maxIndex };
-  }, []);
-
-  const go = useCallback((i: number) => {
-    const { cardW, maxIndex } = getMetrics();
-    const next = Math.max(0, Math.min(i, maxIndex));
-    setIndex(next);
-    if (trackRef.current) {
-      trackRef.current.style.transform = `translateX(${-next * cardW}px)`;
-    }
-  }, [getMetrics]);
-
-  // 自動再生
-  const startAuto = useCallback(() => {
-    timerRef.current = setInterval(() => {
-      setIndex((prev) => {
-        const { cardW, maxIndex } = getMetrics();
-        const next = prev >= maxIndex ? 0 : prev + 1;
-        if (trackRef.current) {
-          trackRef.current.style.transform = `translateX(${-next * cardW}px)`;
-        }
-        return next;
-      });
-    }, 3500);
-  }, [getMetrics]);
-
-  const stopAuto = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-  }, []);
+  const [stepWidth, setStepWidth] = useState(0);
+  const [perView, setPerView] = useState(3);
+  const firstCardRef = useRef<HTMLElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    startAuto();
-    const handleResize = () => go(index);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      stopAuto();
-      window.removeEventListener('resize', handleResize);
+    const measure = () => {
+      const nextPerView = window.innerWidth <= 820 ? 1 : 3;
+      setPerView(nextPerView);
+      if (!firstCardRef.current || !trackRef.current) return;
+      const styles = window.getComputedStyle(trackRef.current);
+      const gap = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
+      setStepWidth(firstCardRef.current.getBoundingClientRect().width + gap);
     };
-  }, [startAuto, stopAuto, go, index]);
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
 
-  // タッチ・マウスドラッグ
-  const dragRef = useRef({ dragging: false, startX: 0, baseX: 0 });
+  const maxIndex = Math.max(0, METHODS.length - perView);
+  const safeIndex = Math.min(index, maxIndex);
 
-  const onDown = (x: number) => {
-    const { cardW } = getMetrics();
-    dragRef.current = { dragging: true, startX: x, baseX: -index * cardW };
-    if (trackRef.current) trackRef.current.style.transition = 'none';
-  };
-  const onMove = (x: number) => {
-    if (!dragRef.current.dragging || !trackRef.current) return;
-    trackRef.current.style.transform = `translateX(${dragRef.current.baseX + (x - dragRef.current.startX)}px)`;
-  };
-  const onUp = (x: number) => {
-    if (!dragRef.current.dragging) return;
-    dragRef.current.dragging = false;
-    if (trackRef.current) trackRef.current.style.transition = '';
-    const diff = x - dragRef.current.startX;
-    if (diff < -50) go(index + 1);
-    else if (diff > 50) go(index - 1);
-    else go(index);
-  };
-
-  const { maxIndex } = getMetrics();
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((current) => (current >= maxIndex ? 0 : current + 1));
+    }, 5200);
+    return () => clearInterval(timer);
+  }, [maxIndex]);
 
   return (
-    <section id="point" className={styles.section}>
+    <section id="message" className={styles.section}>
       <div className="wrap">
-        <span className={styles.eyebrow}>
-          POINT<span className={styles.jp}>集客導線のポイント</span>
-        </span>
-        <h2 className={styles.title}>
-          問い合わせを生む<br />Web導線の7つのポイント
-        </h2>
-        <p className={styles.lead}>
-          Webサイトから問い合わせが来ない理由は、だいたいこの7点に集約されます。矢印・ドット・スワイプでご確認ください。
-        </p>
-
-        <div
-          className={styles.carousel}
-          onMouseEnter={stopAuto}
-          onMouseLeave={startAuto}
-        >
-          <div className={styles.trackMask} ref={maskRef}>
+        <div className={styles.head}>
+          <div>
+            <span className={styles.eyebrow}>
+              METHOD<span className={styles.jp}>私たちの整え方</span>
+            </span>
+            <div className={styles.title}>
+              <strong>4</strong>METHOD
+            </div>
+          </div>
+        </div>
+        <div className={styles.slider}>
+          <button
+            type="button"
+            className={`${styles.arrow} ${styles.prev}`}
+            aria-label="前のメソッドへ"
+            disabled={safeIndex === 0}
+            onClick={() => setIndex((current) => Math.max(0, current - 1))}
+          >
+            PREV
+          </button>
+          <div className={styles.viewport}>
             <div
-              className={styles.track}
               ref={trackRef}
-              onMouseDown={(e) => { onDown(e.clientX); e.preventDefault(); }}
-              onMouseMove={(e) => onMove(e.clientX)}
-              onMouseUp={(e) => onUp(e.clientX)}
-              onTouchStart={(e) => onDown(e.touches[0].clientX)}
-              onTouchMove={(e) => onMove(e.touches[0].clientX)}
-              onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)}
+              className={styles.track}
+              style={{ transform: `translateX(${-safeIndex * stepWidth}px)` }}
             >
-              {POINTS.map((p, i) => (
-                <div key={i} className={styles.card}>
-                  <div className={styles.no}>{i + 1}</div>
-                  <div className={styles.pt}>{p.en}</div>
-                  <h3>{p.title}</h3>
-                  <p>{p.desc}</p>
-                </div>
+              {METHODS.map((method, i) => (
+                <article
+                  className={styles.card}
+                  key={method.number}
+                  ref={i === 0 ? firstCardRef : undefined}
+                >
+                  <div className={styles.num}>{method.number}</div>
+                  <div className={styles.en}>{method.label}</div>
+                  <h3>{method.title}</h3>
+                  <p>{method.body}</p>
+                </article>
               ))}
             </div>
           </div>
-
-          <div className={styles.ctrl}>
-            <div className={styles.dots}>
-              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-                <button
-                  key={i}
-                  className={`${styles.dot} ${i === index ? styles.dotActive : ''}`}
-                  aria-label={`${i + 1}番目へ`}
-                  onClick={() => go(i)}
-                />
-              ))}
-            </div>
-            <div className={styles.arrows}>
-              <button
-                className={styles.arrow}
-                aria-label="前へ"
-                disabled={index === 0}
-                onClick={() => go(index - 1)}
-              >
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-              <button
-                className={styles.arrow}
-                aria-label="次へ"
-                disabled={index === maxIndex}
-                onClick={() => go(index + 1)}
-              >
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
+          <button
+            type="button"
+            className={`${styles.arrow} ${styles.next}`}
+            aria-label="次のメソッドへ"
+            disabled={safeIndex === maxIndex}
+            onClick={() => setIndex((current) => Math.min(maxIndex, current + 1))}
+          >
+            NEXT
+          </button>
+          <div className={styles.counter} aria-label="現在のメソッド">
+            <span className={styles.current}>{String(safeIndex + 1).padStart(2, '0')}</span>
+            <span className={styles.total}>/ 04</span>
           </div>
         </div>
       </div>
