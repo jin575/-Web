@@ -65,18 +65,17 @@
 }
 
 .lead {
-  font-size: clamp(1.62rem, 1.75vw, 2.55rem);
+  font-size: clamp(2.05rem, 2.7vw, 3.25rem);
   font-weight: 900;
-  line-height: 1.45;
+  line-height: 1.36;
   letter-spacing: 0.015em;
-  margin-bottom: 36px;
+  margin-bottom: 38px;
   color: #fff;
-  white-space: nowrap;
 }
 
 .lead span {
-  display: inline;
-  white-space: inherit;
+  display: block;
+  white-space: nowrap;
 }
 
 .text p {

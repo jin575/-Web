@@ -177,8 +177,8 @@
   .mission-photo{margin-top:-188px;box-shadow:26px 24px 50px rgba(16,45,70,.2);background:#fff}
   .mission-photo img{width:100%;height:500px;object-fit:cover;object-position:right center;border-radius:0;display:block}
   .mission-body{color:#fff;max-width:920px;padding-top:18px}
-  .mission-lead{font-size:clamp(1.62rem,1.75vw,2.55rem);font-weight:900;line-height:1.45;letter-spacing:.015em;margin-bottom:36px;color:#fff;white-space:nowrap}
-  .mission-lead span{display:inline;white-space:inherit}
+  .mission-lead{font-size:clamp(2.05rem,2.7vw,3.25rem);font-weight:900;line-height:1.36;letter-spacing:.015em;margin-bottom:38px;color:#fff}
+  .mission-lead span{display:block;white-space:nowrap}
   .mission-text p{color:rgba(255,255,255,.96);font-size:clamp(1.38rem,1.08vw,1.55rem);line-height:2;margin-bottom:18px;font-weight:800}
   .mission-questions{margin:14px 0 20px;color:#fff;font-size:clamp(1.38rem,1.08vw,1.55rem);font-weight:900;line-height:2}
   .mission-questions span{display:block}
@@ -222,25 +222,35 @@
 
   /* ===== MESSAGE SLIDES ===== */
   .carousel-section{display:none}
-  .message-section{position:relative;background:linear-gradient(90deg,rgba(244,249,253,.97),rgba(244,249,253,.86)),url("images/mission-consultation.png") center/cover no-repeat;padding:108px 0;overflow:hidden}
-  .message-section .wrap{position:relative;z-index:1}
-  .message-head{margin-bottom:42px}
-  .message-title{font-size:clamp(3rem,7vw,6.8rem);line-height:.86;font-weight:900;letter-spacing:-.02em;color:rgba(63,143,193,.18)}
-  .message-title strong{display:block;color:var(--navy)}
+  .message-section{position:relative;background:#fff;padding:118px 0 132px;overflow:hidden}
+  .message-section::before{content:"";position:absolute;inset:0;background:url("images/mission-consultation.png") right 8% top 8%/42% auto no-repeat;opacity:.08;pointer-events:none}
+  .message-section::after{content:"";position:absolute;left:-170px;top:0;width:520px;height:760px;background:linear-gradient(135deg,rgba(15,42,74,.08),rgba(63,143,193,.05));clip-path:polygon(0 0,100% 0,42% 100%,0 100%);pointer-events:none}
+  .message-section .wrap{position:relative;z-index:1;max-width:1500px}
+  .message-head{text-align:center;margin-bottom:58px}
+  .message-title{font-size:clamp(4rem,7.2vw,6.9rem);line-height:.9;font-weight:900;letter-spacing:-.02em;color:#1f2328}
+  .message-title strong{display:none}
+  .message-copy{max-width:760px;margin:24px auto 0;font-size:1.05rem;line-height:2.05;color:#27384c;font-weight:650;letter-spacing:.05em}
   .message-lead{max-width:720px}
   .message-lead h2{font-size:clamp(2rem,3.6vw,3.6rem);line-height:1.35;font-weight:900;color:var(--navy);letter-spacing:.02em;margin-bottom:20px}
   .message-lead p{font-size:1.06rem;line-height:2;color:var(--sub);font-weight:700}
-  .message-slider{position:relative;margin-top:34px}
-  .message-viewport{overflow:hidden;margin:0 72px}
-  .message-track{display:flex;gap:22px;transition:transform .55s cubic-bezier(.22,.61,.36,1);will-change:transform}
-  .message-card{position:relative;flex:0 0 calc((100% - 44px)/3);min-height:360px;background:rgba(255,255,255,.94);border:1px solid rgba(209,224,235,.86);padding:34px 30px 38px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 18px 50px rgba(15,42,74,.08)}
-  .message-card::after{content:"";position:absolute;right:-38px;bottom:-44px;width:150px;height:150px;border-radius:50%;background:rgba(63,143,193,.08)}
-  .message-card .num{font-size:3.15rem;line-height:1;font-weight:900;color:rgba(63,143,193,.18);margin-bottom:18px}
-  .message-card .en{font-size:.76rem;letter-spacing:.18em;font-weight:900;color:var(--blue);margin-bottom:16px}
-  .message-card h3{font-size:1.42rem;line-height:1.55;font-weight:900;color:var(--navy);letter-spacing:.02em;margin-bottom:18px}
-  .message-card p{font-size:1rem;line-height:1.95;color:var(--sub);font-weight:650;position:relative;z-index:1}
-  .message-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:54px;height:76px;border:0;background:#1f2328;color:#fff;font-size:.72rem;letter-spacing:.12em;font-weight:900;cursor:pointer;transition:.25s}
-  .message-arrow:hover{background:var(--blue)}
+  .message-slider{position:relative;margin-top:52px}
+  .message-viewport{overflow:hidden;margin:0 92px}
+  .message-track{display:flex;flex-wrap:nowrap;gap:72px;transition:transform .65s cubic-bezier(.22,.61,.36,1);will-change:transform}
+  .message-card{position:relative;flex:0 0 min(1180px,calc(100vw - 250px));min-height:730px;background:transparent;border:0;padding:0 0 92px;display:block;overflow:visible;box-shadow:none}
+  .message-card::after{display:none}
+  .message-card .num{position:absolute;right:92px;bottom:-8px;font-size:clamp(7rem,15vw,13rem);line-height:.8;font-weight:900;color:#1f2328;letter-spacing:-.08em;margin:0}
+  .message-card .num::after{content:"/";display:inline-block;font-size:.34em;font-weight:300;margin-left:18px;transform:translateY(.12em);color:#1f2328}
+  .message-card .en{height:430px;margin:0;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;color:#fff;font-size:clamp(3.6rem,7.2vw,6.5rem);line-height:1;font-weight:900;letter-spacing:.04em;text-shadow:0 8px 22px rgba(0,0,0,.28)}
+  .message-card:nth-child(1) .en{background-image:linear-gradient(rgba(15,42,74,.12),rgba(15,42,74,.12)),url("images/mission-consultation.png")}
+  .message-card:nth-child(2) .en{background-image:linear-gradient(rgba(15,42,74,.1),rgba(15,42,74,.1)),url("images/hero-1-consultation.png")}
+  .message-card:nth-child(3) .en{background-image:linear-gradient(rgba(15,42,74,.18),rgba(15,42,74,.18)),url("images/hero-2.jpg")}
+  .message-card:nth-child(4) .en{background-image:linear-gradient(rgba(15,42,74,.18),rgba(15,42,74,.18)),url("images/hero-3.jpg")}
+  .message-card h3{max-width:660px;font-size:clamp(1.7rem,2.3vw,2.55rem);line-height:1.55;font-weight:900;color:#1f2328;letter-spacing:.03em;margin:58px 390px 0 34px}
+  .message-card p{max-width:640px;font-size:1.08rem;line-height:2.1;color:#1d2733;font-weight:700;position:relative;z-index:1;margin:22px 390px 0 34px}
+  .message-arrow{position:absolute;top:310px;transform:translateY(-50%);z-index:3;width:74px;height:108px;border:0;background:transparent;color:transparent;font-size:0;cursor:pointer;transition:.25s}
+  .message-arrow::before{content:"";position:absolute;left:22px;top:35px;width:40px;height:40px;border-top:5px solid #1f2328;border-left:5px solid #1f2328;transform:rotate(-45deg)}
+  .message-next::before{left:10px;transform:rotate(135deg)}
+  .message-arrow:hover{opacity:.6}
   .message-arrow[disabled]{opacity:.35;cursor:default}
   .message-prev{left:0}.message-next{right:0}
   .message-counter{display:flex;align-items:flex-end;justify-content:center;gap:9px;margin-top:26px;color:var(--navy);font-weight:900;letter-spacing:.08em}
@@ -250,11 +260,17 @@
     .message-section{padding:72px 0}
     .message-head{grid-template-columns:1fr;gap:20px;margin-bottom:28px}
     .message-title{font-size:4.2rem}
+    .message-copy{font-size:.96rem;text-align:left}
     .message-lead h2{font-size:2rem}
     .message-viewport{margin:0 0 72px}
     .message-track{gap:16px}
-    .message-card{flex:0 0 100%;min-height:auto;padding:28px 24px 34px}
-    .message-arrow{top:auto;bottom:0;transform:none;width:calc(50% - 6px);height:54px}
+    .message-card{flex:0 0 100%;min-height:auto;padding:0 0 96px}
+    .message-card .en{height:260px;font-size:clamp(2.45rem,12vw,4.1rem)}
+    .message-card h3{font-size:1.45rem;margin:34px 0 0}
+    .message-card p{font-size:1rem;line-height:1.9;margin:18px 0 0}
+    .message-card .num{right:10px;bottom:18px;font-size:5rem}
+    .message-arrow{top:auto;bottom:0;transform:none;width:calc(50% - 6px);height:54px;background:#1f2328;color:#fff;font-size:.72rem}
+    .message-arrow::before{display:none}
     .message-prev{left:0}.message-next{right:0}
     .message-counter{margin-top:-44px}
   }
@@ -298,10 +314,10 @@
   .flow-method{background:#fff;padding:112px 0;overflow:hidden}
   .flow-intro{display:grid;grid-template-columns:minmax(220px,.72fr) 1.28fr;gap:58px;align-items:end;margin-bottom:46px}
   .flow-display{font-size:clamp(3.6rem,8vw,7.6rem);line-height:.86;font-weight:900;letter-spacing:-.03em;color:rgba(63,143,193,.18)}
-  .flow-display strong{display:block;color:var(--navy)}
+  .flow-display strong{display:none}
   .flow-summary h2{font-size:clamp(2rem,3.6vw,3.5rem);line-height:1.35;font-weight:900;color:var(--navy);letter-spacing:.02em;margin-bottom:22px}
   .flow-summary p{font-size:1.03rem;line-height:2;color:var(--sub);font-weight:700;margin-bottom:18px}
-  .flow-checklist{display:grid;gap:8px;list-style:none;margin-top:22px}
+  .flow-checklist{display:none}
   .flow-checklist li{position:relative;padding-left:22px;font-size:1rem;line-height:1.8;color:var(--navy);font-weight:800}
   .flow-checklist li::before{content:"";position:absolute;left:0;top:.78em;width:8px;height:8px;border-radius:50%;background:var(--blue)}
   .flow-slider{position:relative;margin-top:46px}
@@ -322,6 +338,17 @@
   .flow-counter .current{font-size:2rem;line-height:1;color:var(--blue)}
   .flow-counter .total{font-size:1rem;color:var(--sub);padding-bottom:2px}
   @media(max-width:820px){.flow-method{padding:72px 0}.flow-intro{grid-template-columns:1fr;gap:20px;margin-bottom:30px}.flow-display{font-size:4.2rem}.flow-summary h2{font-size:2rem}.flow-viewport{margin:0 0 72px}.flow-track{gap:16px}.flow-card{flex:0 0 100%;min-height:auto;padding:28px 24px 34px}.flow-card::after{font-size:4.4rem}.flow-arrow{top:auto;bottom:0;transform:none;width:calc(50% - 6px);height:54px}.flow-prev{left:0}.flow-next{right:0}.flow-counter{margin-top:-44px}}
+
+  .flow-link-section{background:var(--bg-soft);padding:96px 0}
+  .flow-link-card{position:relative;display:block;background:#fff;border:1px solid var(--line);padding:44px 52px;overflow:hidden;box-shadow:0 20px 54px rgba(15,42,74,.08);transition:transform .25s ease,box-shadow .25s ease}
+  .flow-link-card::after{content:"";position:absolute;right:-70px;bottom:-96px;width:260px;height:260px;border-radius:50%;background:rgba(47,111,179,.08)}
+  .flow-link-card:hover{transform:translateY(-4px);box-shadow:0 28px 70px rgba(15,42,74,.14)}
+  .flow-link-kicker{display:block;color:var(--blue);font-size:.78rem;letter-spacing:.22em;font-weight:900;margin-bottom:12px}
+  .flow-link-title{display:block;color:var(--navy);font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.35;font-weight:900;letter-spacing:.02em}
+  .flow-link-note{display:block;max-width:720px;margin-top:18px;color:var(--sub);font-weight:700;line-height:2}
+  .flow-link-arrow{display:inline-flex;align-items:center;gap:18px;margin-top:28px;color:#fff;background:var(--navy);padding:13px 24px;border-radius:8px;font-size:.82rem;letter-spacing:.12em;font-weight:900}
+  .flow-link-arrow::after{content:"";width:34px;height:1px;background:#fff;display:block}
+  @media(max-width:820px){.flow-link-section{padding:68px 0}.flow-link-card{padding:32px 24px}.flow-link-title{font-size:1.55rem}.flow-link-note{font-size:.95rem}.flow-link-arrow{width:100%;justify-content:center}}
 
   /* contact */
   .contact{background:var(--navy)}
@@ -376,6 +403,7 @@
       <a href="#mission">理念</a>
       <a href="#service">サービス</a>
       <a href="#price">料金</a>
+      <a href="goiraimadenonagare.html">流れ</a>
       <a href="#contact" class="nav-cta">無料相談</a>
     </nav>
   </div>
@@ -443,8 +471,9 @@
   <div class="wrap">
     <div class="message-head">
       <div>
-        <span class="eyebrow">METHOD<span class="jp">私たちの整え方</span></span>
-        <div class="message-title"><strong>4</strong>METHOD</div>
+        <span class="eyebrow">わたしたちがたいせつにすること</span>
+        <div class="message-title">METHOD</div>
+        <p class="message-copy">患者さんが予約の前で止まらないように、院の良さと問い合わせまでの導線を、ひとつずつ分かりやすく整えます。</p>
       </div>
     </div>
     <div class="message-slider" id="methodSlider">
@@ -454,13 +483,13 @@
       <article class="message-card">
         <div class="num">01</div>
         <div class="en">LOCAL TRUST</div>
-        <h3>地域で選ばれてきた理由を、Webでも伝わる形へ</h3>
+        <h3>地域で選ばれてきた理由を、<br>Webでも伝わる形へ。</h3>
         <p>口コミや紹介で信頼されている院ほど、その良さがWeb上で伝わりきっていないことがあります。大きく見せるのではなく、初めての患者さんが不安なく問い合わせできる見せ方とその導線を整えます。</p>
       </article>
       <article class="message-card">
         <div class="num">02</div>
         <div class="en">RIGHT ORDER</div>
-        <h3>大げさなことはしません。伝えたいことを、伝わる順番に</h3>
+        <h3>大げさなことはしません。<br>伝えたいことを、伝わる順番に</h3>
         <p>先生が伝えたいことを、そのまま並べるだけでは、初めての患者さんには届きにくいことがあります。症状、費用感、初診の流れ、予約方法など、不安がひとつずつ解けていく順番に整理し整えます。</p>
       </article>
       <article class="message-card">
@@ -472,7 +501,7 @@
       <article class="message-card">
         <div class="num">04</div>
         <div class="en">UPDATE SUPPORT</div>
-        <h3>丸投げしてください、徹底的な更新サポート</h3>
+        <h3>丸投げしてください、<br>徹底的な更新サポート</h3>
         <p>休診日、診療時間、料金、メニュー、お知らせなど細かな修正に時間を取られたりしないよう、必要な確認だけを行いながら、変更を丸投げできます。作って終わりではなく、無理なく続く形を整えます。</p>
       </article>
         </div>
@@ -585,104 +614,18 @@
   </div>
 </section>
 
-<!-- flow -->
-<section id="flow" class="flow-method">
+<!-- flow link -->
+<section id="flow" class="flow-link-section">
   <div class="wrap">
-    <div class="flow-intro">
-      <div>
-        <span class="eyebrow">FLOW<span class="jp">ご相談からサイト公開までの流れ</span></span>
-        <div class="flow-display"><strong>8</strong>FLOW</div>
-      </div>
-      <div class="flow-summary">
-        <h2>ご相談からサイト公開までの流れ</h2>
-        <p>ととのうWEBでは、サイトを作って終わりでなく、サイトが公開されてからのサポートを大切にしています。</p>
-        <p>またご依頼前に、料金体系・作業範囲・追加費用の有無を明確にし、安心して進めていただける形でご案内いたします。</p>
-        <ul class="flow-checklist">
-          <li>初めて見る患者さんに伝わる順番になっているか。</li>
-          <li>患者さんが問い合わせ前に迷う場所が残っていないか。</li>
-          <li>サイトを見ながら一つずつ整理し、無理なく進めていきましょう。</li>
-        </ul>
-      </div>
-    </div>
-    <div class="flow-slider" id="flowSlider">
-      <button type="button" class="flow-arrow flow-prev" aria-label="前のステップへ">PREV</button>
-      <div class="flow-viewport">
-        <div class="flow-track" data-flow-track>
-      <article class="flow-card">
-        <span class="step">STEP 01</span>
-        <h3>ご相談・お問い合わせ</h3>
-        <p>まずはお気軽にご相談ください。次のような段階で問題ありません。</p>
-        <div class="quote"><span>「今のホームページを見直したい」</span><span>「予約につながりにくい理由を知りたい」</span><span>「何から直せばいいかわからない」</span></div>
-        <p>ホームページを丸投げしていただければ、人間による確認だけでなくAIによる解析を加えたうえで、Web上で患者さんが迷いやすい点を簡単に整理します。</p>
-      </article>
-      <article class="flow-card">
-        <span class="step">STEP 02</span>
-        <h3>現状確認・簡易診断</h3>
-        <p>現在のホームページ、スマホでの見え方、予約ボタンの位置、診療時間、初診案内、Googleマップとのつながりなどを評価したものを出します。</p>
-        <div class="quote"><span>「患者さんが予約前で止まりやすい場所」</span><span>「先生の良さが伝わる前に離脱しやすい場所」</span></div>
-        <p>今すぐ直すべき部分と、後から整えればよい部分を分けてご共有します。何から手をつければいいか分からない状態でも、こちらで順番を整理いたします。</p>
-      </article>
-      <article class="flow-card">
-        <span class="step">STEP 03</span>
-        <h3>お打ち合わせ</h3>
-        <p>簡易診断の内容をもとに、オンライン、お電話、メールでお話を伺います。院の特徴、診療内容、大切にしている考え方、来てほしい患者さん、現在困っていることなどを確認します。</p>
-        <p>この段階で、必要な作業範囲・費用・スケジュールもできるだけ分かりやすくお伝えします。無理に大きな制作をすすめることはありません。</p>
-      </article>
-      <article class="flow-card">
-        <span class="step">STEP 04</span>
-        <h3>ご提案・お見積り</h3>
-        <p>お話を伺った内容をもとに、必要な改善内容をご提案します。新しく作り込むべきか、今あるページを整えるだけでよいのかを整理します。</p>
-        <p>予約導線・初診案内・スマホ表示・Googleマップとの接続など、どこを優先すべきかを明確にし、含まれる作業、含まれない作業、追加費用が発生する可能性がある部分も事前に明記します。</p>
-      </article>
-      <article class="flow-card">
-        <span class="step">STEP 05</span>
-        <h3>ご依頼・素材の確認</h3>
-        <p>内容にご納得いただけましたら、正式にご依頼となります。ロゴ、院内写真、スタッフ写真、診療メニュー、料金、診療時間、休診日、予約方法など、制作に必要な情報を確認します。</p>
-        <p>写真が足りない場合も、こちらから必要なカットをご案内します。先生に何度も手間をかけないよう、必要な情報をまとめて整理します。</p>
-      </article>
-      <article class="flow-card">
-        <span class="step">STEP 06</span>
-        <h3>構成案・原稿作成</h3>
-        <p>ヒアリング内容をもとに、サイト全体の構成と原稿を作成します。ただ文章を並べるのではなく、初めて見る患者さんが自然に予約まで進める順番に整えます。</p>
-        <div class="quote"><span>「ここなら相談できそう」</span><span>「自分の症状を見てもらえそう」</span><span>「予約まで迷わず進めそう」</span></div>
-        <p>原稿はこちらで作成しますので、先生は内容確認のみで進められます。</p>
-      </article>
-      <article class="flow-card">
-        <span class="step">STEP 07</span>
-        <h3>テストサイト制作・確認</h3>
-        <p>公開前に、テストサイトとして実際の画面をご確認いただきます。パソコンとスマホの両方で、見え方・文章・予約導線・診療時間・地図情報などを確認します。</p>
-        <p>修正が必要な箇所は、この段階で整えます。問題がなければ、正式公開へ進みます。</p>
-      </article>
-      <article class="flow-card">
-        <span class="step">STEP 08</span>
-        <h3>公開・運用開始</h3>
-        <p>サイト公開後も、必要に応じてちょっとした修正や更新を行います。診療時間の変更、休診日のお知らせ、料金やメニューの変更など、メールやLINEなどを使い気軽にご連絡いただけるように心がけています。</p>
-      </article>
-        </div>
-      </div>
-      <button type="button" class="flow-arrow flow-next" aria-label="次のステップへ">NEXT</button>
-      <div class="flow-counter" aria-label="現在のステップ">
-        <span class="current" data-flow-current>01</span>
-        <span class="total">/ 08</span>
-      </div>
-    </div>
+    <span class="eyebrow">FLOW<span class="jp">ご相談から公開まで</span></span>
+    <a class="flow-link-card" href="goiraimadenonagare.html">
+      <span class="flow-link-kicker">FLOW GUIDE</span>
+      <span class="flow-link-title">ご相談からサイト公開までの流れ</span>
+      <span class="flow-link-note">制作前のご相談から公開後の更新サポートまで、8つのステップでご案内します。</span>
+      <span class="flow-link-arrow">VIEW MORE</span>
+    </a>
   </div>
 </section>
-
-<section id="flow-old" style="display:none">
-  <div class="wrap">
-    <span class="eyebrow">FLOW<span class="jp">ご利用の流れ</span></span>
-    <h2 class="t">無料相談から納品まで</h2>
-    <p class="lead">まずは無料で、Web上で損している点を整理してお見せします。内容に納得いただいてからの契約です。</p>
-    <div class="flow">
-      <div class="flow-step"><h4>無料診断</h4><p>現状のWeb導線を確認し、改善点を整理してお見せします。</p></div>
-      <div class="flow-step"><h4>ご契約・お支払い</h4><p>料金・納品範囲・修正回数をご確認のうえ着手します。</p></div>
-      <div class="flow-step"><h4>ヒアリング・制作</h4><p>強みや掲載情報をうかがい、1ページサイトを制作します。</p></div>
-      <div class="flow-step"><h4>確認・納品</h4><p>修正1回ののち公開。URLと操作説明をお渡しします。</p></div>
-    </div>
-  </div>
-</section>
-
 <!-- contact -->
 <section id="contact" class="contact">
   <div class="wrap">
@@ -705,7 +648,7 @@
 <footer>
   <div class="wrap foot-inner">
     <div><div class="foot-brand">ととのうWeb</div>地域事業者のWeb集客導線改善</div>
-    <div>お問い合わせ：shukyakudosenlab@gmail.com<br><a href="tokushoho.html">特定商取引法に基づく表記</a></div>
+    <div>お問い合わせ：shukyakudosenlab@gmail.com<br><a href="goiraimadenonagare.html">ご相談からサイト公開までの流れ</a><br><a href="tokushoho.html">特定商取引法に基づく表記</a></div>
   </div>
 </footer>
 
@@ -789,7 +732,7 @@
 
   var index = 0;
   var timer;
-  function perView() { return window.innerWidth <= 820 ? 1 : 3; }
+  function perView() { return 1; }
   function maxIndex() { return Math.max(0, cards.length - perView()); }
   function cardStep() {
     var rect = cards[0].getBoundingClientRect();
@@ -808,7 +751,7 @@
     timer = setInterval(function() {
       index = index >= maxIndex() ? 0 : index + 1;
       update();
-    }, 5200);
+    }, 14000);
   }
   function stop() { clearInterval(timer); }
   function restart() { stop(); start(); }

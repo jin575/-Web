@@ -7,13 +7,13 @@ const METHODS = [
   {
     number: '01',
     label: 'LOCAL TRUST',
-    title: '地域で選ばれてきた理由を、Webでも伝わる形へ',
+    title: '地域で選ばれてきた理由を、\nWebでも伝わる形へ。',
     body: '口コミや紹介で信頼されている院ほど、その良さがWeb上で伝わりきっていないことがあります。大きく見せるのではなく、初めての患者さんが不安なく問い合わせできる見せ方とその導線を整えます。',
   },
   {
     number: '02',
     label: 'RIGHT ORDER',
-    title: '大げさなことはしません。伝えたいことを、伝わる順番に',
+    title: '大げさなことはしません。\n伝えたいことを、伝わる順番に',
     body: '先生が伝えたいことを、そのまま並べるだけでは、初めての患者さんには届きにくいことがあります。症状、費用感、初診の流れ、予約方法など、不安がひとつずつ解けていく順番に整理し整えます。',
   },
   {
@@ -25,7 +25,7 @@ const METHODS = [
   {
     number: '04',
     label: 'UPDATE SUPPORT',
-    title: '丸投げしてください、徹底的な更新サポート',
+    title: '丸投げしてください、\n徹底的な更新サポート',
     body: '休診日、診療時間、料金、メニュー、お知らせなど細かな修正に時間を取られたりしないよう、必要な確認だけを行いながら、変更を丸投げできます。作って終わりではなく、無理なく続く形を整えます。',
   },
 ] as const;
@@ -33,13 +33,13 @@ const METHODS = [
 export default function Carousel() {
   const [index, setIndex] = useState(0);
   const [stepWidth, setStepWidth] = useState(0);
-  const [perView, setPerView] = useState(3);
+  const [perView, setPerView] = useState(1);
   const firstCardRef = useRef<HTMLElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const measure = () => {
-      const nextPerView = window.innerWidth <= 820 ? 1 : 3;
+      const nextPerView = 1;
       setPerView(nextPerView);
       if (!firstCardRef.current || !trackRef.current) return;
       const styles = window.getComputedStyle(trackRef.current);
@@ -57,7 +57,7 @@ export default function Carousel() {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((current) => (current >= maxIndex ? 0 : current + 1));
-    }, 5200);
+    }, 14000);
     return () => clearInterval(timer);
   }, [maxIndex]);
 
@@ -66,12 +66,13 @@ export default function Carousel() {
       <div className="wrap">
         <div className={styles.head}>
           <div>
-            <span className={styles.eyebrow}>
-              METHOD<span className={styles.jp}>私たちの整え方</span>
-            </span>
+            <span className={styles.eyebrow}>わたしたちがたいせつにすること</span>
             <div className={styles.title}>
-              <strong>4</strong>METHOD
+              METHOD
             </div>
+            <p className={styles.copy}>
+              患者さんが予約の前で止まらないように、院の良さと問い合わせまでの導線を、ひとつずつ分かりやすく整えます。
+            </p>
           </div>
         </div>
         <div className={styles.slider}>
