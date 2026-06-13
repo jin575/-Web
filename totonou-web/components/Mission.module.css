@@ -65,23 +65,24 @@
 }
 
 .lead {
-  font-size: clamp(2.7rem, 3.15vw, 3.45rem);
+  font-size: clamp(1.62rem, 1.75vw, 2.55rem);
   font-weight: 900;
-  line-height: 1.42;
-  letter-spacing: 0.025em;
-  margin-bottom: 44px;
+  line-height: 1.45;
+  letter-spacing: 0.015em;
+  margin-bottom: 36px;
   color: #fff;
+  white-space: nowrap;
 }
 
 .lead span {
-  display: block;
-  white-space: nowrap;
+  display: inline;
+  white-space: inherit;
 }
 
 .text p {
   color: rgba(255, 255, 255, 0.96);
-  font-size: clamp(1.14rem, 0.9vw, 1.28rem);
-  line-height: 2.08;
+  font-size: clamp(1.38rem, 1.08vw, 1.55rem);
+  line-height: 2;
   margin-bottom: 18px;
   font-weight: 800;
 }
@@ -89,23 +90,34 @@
 .questions {
   margin: 14px 0 20px;
   color: #fff;
-  font-size: clamp(1.14rem, 0.9vw, 1.28rem);
+  font-size: clamp(1.38rem, 1.08vw, 1.55rem);
   font-weight: 900;
-  line-height: 2.08;
+  line-height: 2;
 }
 
 .questions span {
   display: block;
 }
 
+.singleLine {
+  white-space: nowrap;
+}
+
 @media (min-width: 901px) {
+  .head {
+    max-width: none;
+    margin: 0;
+    padding-left: calc(34vw + clamp(30px, 2.6vw, 64px));
+    padding-right: clamp(28px, 3vw, 80px);
+  }
+
   .inner {
     max-width: none;
     width: 100%;
     margin: 0;
-    padding: 0 clamp(28px, 5.6vw, 120px) 0 0;
-    grid-template-columns: minmax(520px, 43.2vw) minmax(0, 820px);
-    gap: clamp(44px, 4vw, 78px);
+    padding: 0 clamp(28px, 3vw, 80px) 0 0;
+    grid-template-columns: minmax(460px, 34vw) minmax(0, 1060px);
+    gap: clamp(30px, 2.6vw, 64px);
   }
 
   .photo img {
@@ -156,13 +168,18 @@
     margin-bottom: 28px;
   }
 
+  .lead,
   .lead span {
+    white-space: normal;
+  }
+
+  .singleLine {
     white-space: normal;
   }
 
   .text p,
   .questions {
-    font-size: 1.04rem;
-    line-height: 1.95;
+    font-size: 1.14rem;
+    line-height: 1.9;
   }
 }

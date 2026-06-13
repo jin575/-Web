@@ -29,9 +29,9 @@ export default function Home() {
         <Hero />
         <Mission />
         <Carousel />
+        <Flow />
         <Service />
         <Pricing />
-        <Flow />
         <Contact />
       </main>
       <Footer />
