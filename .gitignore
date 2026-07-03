@@ -9,6 +9,7 @@ out/
 dist/
 build/
 .cache/
+.pnpm-store/
 
 # --- OS・エディタの一時ファイル ---
 .DS_Store
