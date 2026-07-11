@@ -44,8 +44,11 @@
   .nav-links{display:flex;gap:30px;align-items:center}
   .nav-links a{font-size:.95rem;color:var(--sub);font-weight:700}
   .nav-links a:hover{color:var(--navy)}
-  .nav-cta{background:var(--navy);color:#fff !important;padding:11px 22px;border-radius:8px;font-size:.92rem}
-  .nav-cta:hover{background:var(--navy-deep)}
+  /* 案B: ヘッダーCTA＝背景が左から満ちる */
+  .nav-cta{position:relative;overflow:hidden;background:var(--navy);color:#fff !important;padding:11px 22px;border-radius:8px;font-size:.92rem}
+  .nav-cta::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--blue),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.22,.61,.36,1)}
+  .nav-cta span{position:relative;z-index:1}
+  .nav-cta:hover::before{transform:scaleX(1)}
   .menu-toggle{display:none;background:none;border:0;cursor:pointer;padding:6px}
   .menu-toggle span{display:block;width:24px;height:2px;background:var(--navy);margin:6px 0}
 
@@ -82,7 +85,11 @@
   .cta-box{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
   .cta-box h2{font-size:clamp(1.6rem,3.2vw,2.55rem);line-height:1.45;font-weight:900;margin-bottom:8px}
   .cta-box p{color:rgba(255,255,255,.82);font-weight:700}
-  .btn{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--navy);font-weight:900;border-radius:8px;padding:14px 26px;min-width:210px}
+  /* 案E: 白抜きボタン＝枠線が描かれる */
+  .btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--navy);font-weight:900;border-radius:8px;padding:14px 26px;min-width:210px;transition:color .25s ease}
+  .btn::before{content:"";position:absolute;inset:0;border:2px solid var(--blue);border-radius:8px;clip-path:inset(0 100% 0 0);transition:clip-path .35s ease;pointer-events:none}
+  .btn:hover{color:var(--blue)}
+  .btn:hover::before{clip-path:inset(0 0 0 0)}
   .back-link{display:inline-flex;margin-top:34px;color:var(--blue);font-weight:900}
 
   footer{background:var(--navy-deep);color:rgba(255,255,255,.72);padding:46px 0;font-size:.9rem}
@@ -125,7 +132,7 @@
       <a href="index.html#service">サービス</a>
       <a href="index.html#price">料金</a>
       <a href="goiraimadenonagare.html">流れ</a>
-      <a href="index.html#contact" class="nav-cta">無料相談</a>
+      <a href="index.html#contact" class="nav-cta"><span>無料相談</span></a>
     </nav>
   </div>
 </header>
@@ -264,7 +271,7 @@
 <footer>
   <div class="wrap foot-inner">
     <div><div class="foot-brand">医療のみちしるべ</div>地域事業者のWeb集客導線改善</div>
-    <div>お問い合わせ：shukyakudosenlab@gmail.com<br><a href="index.html">トップページ</a><br><a href="tokushoho.html">特定商取引法に基づく表記</a></div>
+    <div>お問い合わせ：shukyakudosenlab@gmail.com<br><a href="index.html">トップページ</a><br><a href="otorihiki.html">運営者情報・お取引条件</a><br><a href="privacy.html">プライバシーポリシー</a></div>
   </div>
 </footer>
 </body>

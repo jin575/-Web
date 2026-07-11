@@ -66,8 +66,11 @@
   .nav-links{display:flex;gap:30px;align-items:center}
   .nav-links a{font-size:.95rem;color:var(--sub);font-weight:600}
   .nav-links a:hover{color:var(--navy)}
-  .nav-cta{background:var(--navy);color:#fff !important;padding:11px 22px;border-radius:8px;font-size:.92rem}
-  .nav-cta:hover{background:var(--navy-deep)}
+  /* 案B: ヘッダーCTA＝背景が左から満ちる */
+  .nav-cta{position:relative;overflow:hidden;background:var(--navy);color:#fff !important;padding:11px 22px;border-radius:8px;font-size:.92rem}
+  .nav-cta::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--blue),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.22,.61,.36,1)}
+  .nav-cta span{position:relative;z-index:1}
+  .nav-cta:hover::before{transform:scaleX(1)}
   .menu-toggle{display:none;background:none;border:0;cursor:pointer;padding:6px}
   .menu-toggle span{display:block;width:24px;height:2px;background:var(--navy);margin:6px 0}
 
@@ -143,8 +146,10 @@
     display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;
     opacity:0;animation:fadeUp 1.2s 1s ease-out forwards;
   }
-  .btn-primary{background:var(--navy);color:#fff;padding:17px 34px;border-radius:9px;font-weight:700;font-size:1.05rem;border:0;cursor:pointer;transition:.2s;display:inline-block}
-  .btn-primary:hover{background:var(--navy-deep);transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,42,74,.22)}
+  /* 案A: 基本ボタン＝ふわり浮上＋影 */
+  .btn-primary{background:var(--navy);color:#fff;padding:17px 34px;border-radius:9px;font-weight:700;font-size:1.05rem;border:0;cursor:pointer;transition:.3s;display:inline-block}
+  .btn-primary:hover{background:var(--navy-deep);transform:translateY(-3px);box-shadow:0 12px 26px rgba(15,42,74,.28)}
+  .btn-primary:active{transform:translateY(-1px);box-shadow:0 6px 14px rgba(15,42,74,.24)}
   .btn-ghost-white{padding:17px 30px;border-radius:9px;font-weight:700;font-size:1.05rem;border:2px solid rgba(255,255,255,.55);color:#fff;transition:.2s;display:inline-block}
   .btn-ghost-white:hover{border-color:#fff;background:rgba(255,255,255,.12)}
   /* スクロール誘導 */
@@ -359,8 +364,11 @@
   .field label .req{color:#ff9b8f;margin-left:4px}
   .field input,.field textarea,.field select{width:100%;padding:14px 16px;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.96);color:var(--ink);font-size:1rem;font-family:inherit}
   .field textarea{min-height:120px;resize:vertical}
-  .form .btn-primary{width:100%;background:#fff;color:var(--navy)}
-  .form .btn-primary:hover{background:var(--blue-soft)}
+  /* 案E: 白抜きボタン＝枠線が描かれる */
+  .form .btn-primary{position:relative;overflow:hidden;width:100%;background:#fff;color:var(--navy)}
+  .form .btn-primary::before{content:"";position:absolute;inset:0;border:2px solid var(--blue);border-radius:9px;clip-path:inset(0 100% 0 0);transition:clip-path .35s ease;pointer-events:none}
+  .form .btn-primary:hover{background:#fff;color:var(--blue)}
+  .form .btn-primary:hover::before{clip-path:inset(0 0 0 0)}
   .form-note{font-size:.85rem;color:rgba(255,255,255,.72);margin-top:16px;text-align:center;line-height:1.7}
 
   /* footer */
@@ -400,7 +408,7 @@
       <a href="#service">サービス</a>
       <a href="#price">料金</a>
       <a href="goiraimadenonagare.html">流れ</a>
-      <a href="#contact" class="nav-cta">無料相談</a>
+      <a href="#contact" class="nav-cta"><span>無料相談</span></a>
     </nav>
   </div>
 </header>
@@ -647,7 +655,7 @@
 <footer>
   <div class="wrap foot-inner">
     <div><div class="foot-brand">医療のみちしるべ</div>地域事業者のWeb集客導線改善</div>
-    <div>お問い合わせ：shukyakudosenlab@gmail.com<br><a href="goiraimadenonagare.html">ご相談からサイト公開までの流れ</a><br><a href="tokushoho.html">特定商取引法に基づく表記</a></div>
+    <div>お問い合わせ：shukyakudosenlab@gmail.com<br><a href="goiraimadenonagare.html">ご相談からサイト公開までの流れ</a><br><a href="otorihiki.html">運営者情報・お取引条件</a><br><a href="privacy.html">プライバシーポリシー</a></div>
   </div>
 </footer>
 
